@@ -2,13 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>متبرعون بالدم</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تطبيق التبرع بالدم</title>
   <style>
     * { box-sizing: border-box; }
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #f5f5f5;
+      background: #f0f0f0;
       margin: 0;
       padding: 0;
     }
@@ -17,23 +17,23 @@
       color: white;
       text-align: center;
       padding: 15px;
-      font-size: 24px;
+      font-size: 20px;
     }
     nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-around;
       background-color: #ffcccc;
       padding: 10px;
-      flex-wrap: wrap;
     }
     nav button {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
       background-color: #b30000;
       color: white;
-      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
       margin: 5px;
+      cursor: pointer;
     }
     .section {
       display: none;
@@ -44,152 +44,106 @@
     }
     input, select, button {
       width: 100%;
-      margin-top: 10px;
       padding: 10px;
-      border-radius: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
       border: 1px solid #ccc;
+    }
+    .field-label {
+      color: #b30000;
+      font-size: 14px;
+      margin-top: 10px;
     }
     table {
       width: 100%;
-      margin-top: 15px;
       border-collapse: collapse;
-      background-color: white;
+      margin-top: 20px;
+      background: white;
     }
-    th, td {
-      padding: 8px;
-      border: 1px solid red;
+    td, th {
+      padding: 10px;
       text-align: center;
     }
-    thead tr {
+    thead {
       background-color: #b30000;
       color: white;
     }
-    .filter-section {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    tbody tr {
+      border: 2px solid #b30000;
+      margin-bottom: 10px;
     }
-    @media (min-width: 600px) {
-      .filter-section {
-        flex-direction: row;
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead {
+        display: none;
+      }
+      tr {
+        margin-bottom: 15px;
+        border: 2px solid #b30000;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #fff;
+      }
+      td {
+        text-align: right;
+        padding-right: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px solid #eee;
+      }
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-weight: bold;
+        color: #b30000;
+      }
+      td:last-child {
+        border-bottom: none;
       }
     }
-    .popup-message, .password-popup {
+    .popup-message {
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) scale(0.9);
-      background-color: #fff;
-      padding: 20px 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border: 2px solid red;
+      border-radius: 10px;
       z-index: 1000;
-      transition: all 0.3s ease;
-      max-width: 90%;
-      width: 350px;
       text-align: center;
-      border: 3px solid red;
     }
-    .popup-message.active, .password-popup.active {
+    .popup-message.active {
       display: block;
-      transform: translate(-50%, -50%) scale(1);
     }
-    .popup-message button, .password-popup button {
-      margin-top: 15px;
-      background-color: #c00;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      color: #888;
-      padding: 10px;
-    }
-  
-@media (max-width: 600px) {
-  table, thead, tbody, th, td, tr {
-    display: block;
-  }
-
-  thead {
-    display: none;
-  }
-
-  tr {
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #fff;
-  }
-
-  td {
-    text-align: right;
-    padding-right: 50%;
-    position: relative;
-  }
-
-  td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    font-weight: bold;
-    color: #b30000;
-  }
-
-  body {
-    padding: 5px;
-  }
-
-  input, select, button {
-    font-size: 16px;
-  }
-
-  .popup-message, .password-popup {
-    width: 95%;
-  }
-
-  nav {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav button {
-    width: 90%;
-  }
-
-  header {
-    font-size: 18px;
-    padding: 10px;
-  }
-}
-</style>
+  </style>
 </head>
 <body>
 
-<header>متبرعون بالدم... قطرة أمل تنقذ حياة</header>
-<header>نرجو من المتبرعين تعبئة بياناتهم الصحيحة وكاملة...</header>
+<header>متبرعون بالدم - قطرة أمل تنقذ حياة</header>
+<header>الرجاء من المتبرعين تعبئة بياناتهم الصحيحة وكاملة حتى يتسهل على الباحثين عن الدم ايجاده</header>
 
 <nav>
   <button onclick="showSection('register')">تسجيل متبرع جديد</button>
-  <button onclick="showPasswordPopup()">تعديل بيانات</button>
+  <button onclick="showPasswordPopup()">تعديل البيانات</button>
   <button onclick="showSection('search')">بحث عن متبرع</button>
 </nav>
 
+<!-- تسجيل -->
 <div id="register" class="section active">
-  <h3>تسجيل كمتبرع</h3>
+  <h3>تسجيل متبرع جديد</h3>
   <input type="text" id="donorName" placeholder="الاسم الكامل">
   <input type="text" id="donorPhone" placeholder="رقم الهاتف">
   <input type="text" id="donorCity" placeholder="المحافظة">
   <input type="text" id="donorArea" placeholder="المديرية">
-  <input type="text" id="donorLocation" placeholder="مكان السكن الحالي">
-  <label for="donorLastDate">آخر تاريخ تبرع (مهم)</label><input type="date" id="donorLastDate">
+  <input type="text" id="donorLocation" placeholder="مكان السكن">
+  <label class="field-label">حدد متى آخر تاريخ تم التبرع فيه</label>
+  <input type="date" id="donorLastDate">
   <select id="donorBlood">
     <option selected>جميع الفصائل</option>
     <option>+A</option><option>-A</option>
@@ -200,16 +154,17 @@
   <button onclick="addDonor()">تسجيل</button>
 </div>
 
+<!-- تعديل -->
 <div id="edit" class="section">
-  <h3>تعديل بيانات المتبرع</h3>
+  <h3>تعديل بيانات متبرع</h3>
   <input type="text" id="editName" placeholder="ابحث باسم المتبرع">
-  <button onclick="editDonor()" style="background-color: #007bff;">بحث عن متبرع</button>
-  <div id="editSection" style="display: none;">
+  <button onclick="editDonor()">بحث</button>
+  <div id="editSection" style="display:none;">
     <input type="text" id="editNewName" placeholder="الاسم الكامل">
     <input type="text" id="editPhone" placeholder="رقم الهاتف">
     <input type="text" id="editCity" placeholder="المحافظة">
     <input type="text" id="editArea" placeholder="المديرية">
-    <input type="text" id="editLocation" placeholder="مكان السكن ">
+    <input type="text" id="editLocation" placeholder="مكان السكن">
     <input type="date" id="editLastDate">
     <select id="editBlood">
       <option>+A</option><option>-A</option>
@@ -217,75 +172,46 @@
       <option>+AB</option><option>-AB</option>
       <option>+O</option><option>-O</option>
     </select>
-    <button onclick="saveEdit()" style="background-color: #28a745;">تعديل بيانات المتبرع</button>
-    <button onclick="deleteDonor()">حذف</button>
+    <button onclick="saveEdit()">حفظ التعديل</button>
   </div>
 </div>
 
+<!-- البحث -->
 <div id="search" class="section">
   <h3>البحث عن متبرعين</h3>
-  <div class="filter-section">
-    <select id="searchBlood" onchange="searchDonors()">
-      <option selected>جميع الفصائل</option>
-      <option>+A</option><option>-A</option>
-      <option>+B</option><option>-B</option>
-      <option>+AB</option><option>-AB</option>
-      <option>+O</option><option>-O</option>
-    </select>
-    <input type="text" id="searchQuery" oninput="searchDonors()" placeholder="ابحث بالاسم أو رقم الهاتف">
-  </div>
-  <table id="donorsTable">
+  <select id="searchBlood" onchange="searchDonors()">
+    <option selected>جميع الفصائل</option>
+    <option>+A</option><option>-A</option>
+    <option>+B</option><option>-B</option>
+    <option>+AB</option><option>-AB</option>
+    <option>+O</option><option>-O</option>
+  </select>
+  <input type="text" id="searchQuery" oninput="searchDonors()" placeholder="بحث بالاسم أو الهاتف أو المحافظة أو المديرية أو السكن">
+  <table>
     <thead>
       <tr>
-        <th>الاسم</th><th>الهاتف</th><th>الفصيلة</th><th>المحافظة</th><th>المديرية</th><th>السكن</th><th>آخر تبرع</th>
+        <th>الاسم</th><th>الهاتف</th><th>الفصيلة</th><th>المحافظة</th><th>المديرية</th><th>السكن</th><th>آخر تبرع</th><th>تعديل</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody id="donorsTable"></tbody>
   </table>
 </div>
 
+<!-- نوافذ منبثقة -->
 <div id="successPopup" class="popup-message"></div>
-<div id="deleteConfirmPopup" class="popup-message">
-  <p>هل أنت متأكد من حذف بيانات المتبرع؟</p>
-  <button onclick="confirmDelete(true)">نعم</button>
-  <button onclick="confirmDelete(false)">لا</button>
-</div>
-<div id="passwordPopup" class="password-popup">
-  <p>إذا أردت تعديل بياناتك تواصل على الواتس على الرقم التالي:<br>00966511479262</p>
-  <input type="password" id="passwordInput" placeholder="أدخل كلمة المرور">
+<div id="passwordPopup" class="popup-message">
+  <p>اذا رغبت بتعديل بياناتك ارجو التواصل على الواتس على الرقم التالي:00966511479262 نبيل اليافعي</p>
+  <input type="password" id="passwordInput" placeholder="كلمة المرور">
   <button onclick="checkPassword()">دخول</button>
   <button onclick="closePasswordPopup()">إغلاق</button>
 </div>
-<div class="footer">تصميم: م/نبيل اليافعي</div>
 
+<!-- سكريبت -->
 <script>
-  const donorsData = [];
-
-// Load from localStorage
-window.addEventListener("load", () => {
-  const saved = localStorage.getItem("donorsData");
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed)) {
-        donorsData.push(...parsed);
-        renderSearchTable();
-      }
-    } catch (e) {
-      console.error("فشل في تحميل البيانات من التخزين المحلي", e);
-    }
-  }
-});
-
-// Save to localStorage
-function updateLocalStorage() {
-  localStorage.setItem("donorsData", JSON.stringify(donorsData));
-}
-
-  let pendingDeleteIndex = null;
+  const donorsData = JSON.parse(localStorage.getItem('donors')) || [];
 
   function showSection(id) {
-    document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
     document.getElementById(id).classList.add("active");
   }
 
@@ -298,146 +224,124 @@ function updateLocalStorage() {
   }
 
   function checkPassword() {
-    const password = document.getElementById("passwordInput").value;
-    if (password === "Na@7363Nabel") {
+    if (document.getElementById("passwordInput").value === "Na@7363Nabel") {
       closePasswordPopup();
-      showSection('edit');
+      showSection("edit");
     } else {
       alert("كلمة المرور غير صحيحة");
     }
   }
 
   function addDonor() {
-    const name = document.getElementById("donorName").value;
-    const phone = document.getElementById("donorPhone").value;
-    const city = document.getElementById("donorCity").value;
-    const area = document.getElementById("donorArea").value;
-    const location = document.getElementById("donorLocation").value;
-    const lastDate = document.getElementById("donorLastDate").value;
-    const blood = document.getElementById("donorBlood").value;
-    if (name && phone && city && area && location && lastDate && blood !== "جميع الفصائل") {
-      donorsData.push({ name, phone, city, area, location, lastDate, blood });
-      updateLocalStorage();
-      showMessage("تم التسجيل بنجاح<br><small>جزاك الله خيرًا وجعلها في ميزان حسناتك</small>");
-      document.querySelectorAll("#register input").forEach(i => i.value = "");
-      document.getElementById("donorBlood").selectedIndex = 0;
+    const d = {
+      name: donorName.value.trim(),
+      phone: donorPhone.value.trim(),
+      city: donorCity.value.trim(),
+      area: donorArea.value.trim(),
+      location: donorLocation.value.trim(),
+      lastDate: donorLastDate.value,
+      blood: donorBlood.value
+    };
+    if (Object.values(d).every(v => v) && d.blood !== "جميع الفصائل") {
+      donorsData.push(d);
+      localStorage.setItem('donors', JSON.stringify(donorsData));
       renderSearchTable();
-      updateLocalStorage();
+      showMessage("تم تسجيل بياناتك بنجاح جزاك الله خير وجعلها الله في ميزان حسناتك");
+      document.querySelectorAll("#register input").forEach(i => i.value = "");
+      donorBlood.selectedIndex = 0;
     } else {
-      showMessage("يرجى تعبئة جميع الحقول واختيار الفصيلة");
+      showMessage("يرجى تعبئة جميع الحقول");
     }
   }
 
   function editDonor() {
-    const name = document.getElementById("editName").value;
-    const donor = donorsData.find(d => d.name.toLowerCase() === name.toLowerCase());
+    const name = editName.value.toLowerCase();
+    const donor = donorsData.find(d => d.name.toLowerCase() === name);
     if (donor) {
       document.getElementById("editSection").style.display = "block";
-      document.getElementById("editNewName").value = donor.name;
-      document.getElementById("editPhone").value = donor.phone;
-      document.getElementById("editCity").value = donor.city;
-      document.getElementById("editArea").value = donor.area;
-      document.getElementById("editLocation").value = donor.location;
-      document.getElementById("editLastDate").value = donor.lastDate;
-      document.getElementById("editBlood").value = donor.blood;
+      editNewName.value = donor.name;
+      editPhone.value = donor.phone;
+      editCity.value = donor.city;
+      editArea.value = donor.area;
+      editLocation.value = donor.location;
+      editLastDate.value = donor.lastDate;
+      editBlood.value = donor.blood;
     } else {
       showMessage("المتبرع غير موجود");
-      document.getElementById("editSection").style.display = "none";
     }
   }
 
   function saveEdit() {
-    const name = document.getElementById("editName").value;
-    const donor = donorsData.find(d => d.name.toLowerCase() === name.toLowerCase());
-    if (donor) {
-      donor.name = document.getElementById("editNewName").value;
-      donor.phone = document.getElementById("editPhone").value;
-      donor.city = document.getElementById("editCity").value;
-      donor.area = document.getElementById("editArea").value;
-      donor.location = document.getElementById("editLocation").value;
-      donor.lastDate = document.getElementById("editLastDate").value;
-      donor.blood = document.getElementById("editBlood").value;
+    const index = donorsData.findIndex(d => d.name.toLowerCase() === editName.value.toLowerCase());
+    if (index > -1) {
+      donorsData[index] = {
+        name: editNewName.value,
+        phone: editPhone.value,
+        city: editCity.value,
+        area: editArea.value,
+        location: editLocation.value,
+        lastDate: editLastDate.value,
+        blood: editBlood.value
+      };
+      localStorage.setItem('donors', JSON.stringify(donorsData));
       renderSearchTable();
-      updateLocalStorage();
-      showMessage("تم تعديل بياناتك بنجاح");
+      showMessage("تم التعديل");
       document.getElementById("editSection").style.display = "none";
     }
-  }
-
-  function deleteDonor() {
-    const name = document.getElementById("editName").value;
-    const index = donorsData.findIndex(d => d.name.toLowerCase() === name.toLowerCase());
-    if (index !== -1) {
-      pendingDeleteIndex = index;
-      document.getElementById("deleteConfirmPopup").classList.add('active');
-    }
-  }
-
-  function confirmDelete(confirmed) {
-    if (confirmed && pendingDeleteIndex !== null) {
-      donorsData.splice(pendingDeleteIndex, 1);
-      renderSearchTable();
-      updateLocalStorage();
-      showMessage("تم حذف المتبرع بنجاح");
-      document.getElementById("editSection").style.display = "none";
-    }
-    document.getElementById("deleteConfirmPopup").classList.remove("active");
-    pendingDeleteIndex = null;
   }
 
   function searchDonors() {
-    const blood = document.getElementById("searchBlood").value;
-    const query = document.getElementById("searchQuery").value.toLowerCase();
-    const results = donorsData.filter(d => {
-      return (blood === "جميع الفصائل" || blood === d.blood) &&
-             (d.name.toLowerCase().includes(query) || d.phone.includes(query));
-    });
-    const tbody = document.querySelector("#donorsTable tbody");
-    tbody.innerHTML = "";
-    results.forEach(d => {
-      const row = `<tr>
-        <td data-label='الاسم'>${d.name}</td>
-        <td data-label='الهاتف'>
-          <a href="tel:${d.phone}" style="color: blue; text-decoration: none;">
-            📞 اتصال
-          </a><br>${d.phone}
-        </td>
-        <td data-label='الفصيلة'>${d.blood}</td>
-        <td data-label='المحافظة'>${d.city}</td>
-        <td data-label='المديرية'>${d.area}</td>
-        <td data-label='السكن'>${d.location}</td>
-        <td data-label='آخر تبرع'>${d.lastDate}</td>
-      </tr>`;
-      tbody.innerHTML += row;
-    });
-  }
-
-  function showMessage(message) {
-    const popup = document.getElementById("successPopup");
-    popup.innerHTML = message;
-    popup.classList.add("active");
-    setTimeout(() => popup.classList.remove("active"), 4000);
+    const blood = searchBlood.value;
+    const query = searchQuery.value.toLowerCase();
+    const results = donorsData.filter(d => 
+      (blood === "جميع الفصائل" || d.blood === blood) &&
+      (d.name.toLowerCase().includes(query) || d.phone.includes(query) || d.city.toLowerCase().includes(query) || d.area.toLowerCase().includes(query) || d.location.toLowerCase().includes(query))
+    );
+    renderTable(results);
   }
 
   function renderSearchTable() {
-    const tbody = document.querySelector("#donorsTable tbody");
+    renderTable(donorsData);
+  }
+
+  function renderTable(data) {
+    const tbody = document.getElementById("donorsTable");
     tbody.innerHTML = "";
-    donorsData.forEach(d => {
-      const row = `<tr>
-        <td data-label='الاسم'>${d.name}</td>
-        <td data-label='الهاتف'>
-          <a href="tel:${d.phone}" style="color: blue; text-decoration: none;">
-            📞 اتصال
-          </a><br>${d.phone}
-        </td>
-        <td data-label='الفصيلة'>${d.blood}</td>
-        <td data-label='المحافظة'>${d.city}</td>
-        <td data-label='المديرية'>${d.area}</td>
-        <td data-label='السكن'>${d.location}</td>
-        <td data-label='آخر تبرع'>${d.lastDate}</td>
+    data.forEach((d, index) => {
+      tbody.innerHTML += `<tr>
+        <td data-label="الاسم">${d.name}</td>
+        <td data-label="الهاتف"><a href="tel:${d.phone}">📞 اتصال</a><br>${d.phone}</td>
+        <td data-label="الفصيلة">${d.blood}</td>
+        <td data-label="المحافظة">${d.city}</td>
+        <td data-label="المديرية">${d.area}</td>
+        <td data-label="السكن">${d.location}</td>
+        <td data-label="آخر تبرع">${d.lastDate}</td>
+        <td data-label="تعديل"><button onclick="enableEditDate(${index}, this)">تحديث تاريخ تبرعك</button></td>
       </tr>`;
-      tbody.innerHTML += row;
     });
+  }
+
+  function enableEditDate(index, button) {
+    const cell = button.closest('tr').querySelector('td[data-label="آخر تبرع"]');
+    const input = document.createElement("input");
+    input.type = "date";
+    input.value = donorsData[index].lastDate;
+    input.onblur = () => {
+      donorsData[index].lastDate = input.value;
+      localStorage.setItem('donors', JSON.stringify(donorsData));
+      showMessage("تم تحديث تاريخ التبرع");
+      renderSearchTable();
+    };
+    cell.innerHTML = "";
+    cell.appendChild(input);
+    input.focus();
+  }
+
+  function showMessage(msg) {
+    const popup = document.getElementById("successPopup");
+    popup.innerHTML = msg;
+    popup.classList.add("active");
+    setTimeout(() => popup.classList.remove("active"), 3000);
   }
 </script>
 
