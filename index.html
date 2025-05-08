@@ -20,8 +20,8 @@
     }
     * { box-sizing: border-box; }
     body { font-family: 'Arial', sans-serif; background: #f0f0f0; margin: 0; padding: 0; }
-    header { background-color: #b30000; color: white; text-align: center; padding: 15px; font-size: 20px; }
-    nav { display: flex; flex-wrap: wrap; justify-content: space-around; background-color: #ffcccc; padding: 10px; }
+    header { background-color: #b30000; color: white; text-align: center; padding: 15px; font-size: 20px; display: none; }
+    nav { display: none; flex-wrap: wrap; justify-content: space-around; background-color: #ffcccc; padding: 10px; }
     nav button { 
       background-color: #b30000; 
       color: white; 
@@ -36,7 +36,7 @@
     }
     .section { display: none; padding: 20px; }
     .active { display: block; }
-    input, select, button, textarea { width: 100%; padding: 10px; margin-top: 10px; border-radius: 8px; border: 1px solid #ccc; }
+    input, select, button { width: 100%; padding: 10px; margin-top: 10px; border-radius: 8px; border: 1px solid #ccc; }
     .field-label { color: #b30000; font-size: 14px; margin-top: 10px; display: flex; align-items: center; gap: 8px; }
     table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
     td, th { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 10px; text-align: center; }
@@ -50,7 +50,7 @@
       transform: translateY(-50%);
       color: #b30000;
     }
-    .input-icon input, .input-icon select { padding-right: 40px !important; }
+    .input-icon input { padding-right: 40px !important; }
     
     /* محاذاة أرقام الهاتف والواتساب لليمين */
     .phone-input, .whatsapp-input {
@@ -74,47 +74,6 @@
       text-align: center;
     }
     
-    /* أنماط جديدة للتحسينات */
-    .stars-container {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 15px 0;
-      font-size: 24px;
-    }
-    
-    .stars-container i {
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .donor-rating {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .availability-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 3px 8px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-    
-    .available { background-color: #e8f5e9; color: #2e7d32; }
-    .busy { background-color: #fff8e1; color: #ff8f00; }
-    .away { background-color: #e3f2fd; color: #1565c0; }
-    .unavailable { background-color: #ffebee; color: #c62828; }
-    
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-    
     @media (max-width: 600px) {
       table, thead, tbody, th, td, tr { display: block; }
       thead { display: none; }
@@ -123,7 +82,6 @@
       td::before { content: attr(data-label); position: absolute; right: 10px; top: 10px; font-weight: bold; color: #b30000; }
       td:last-child { border-bottom: none; }
     }
-    
     .popup-message, .update-date-popup { 
       display: none; 
       position: fixed; 
@@ -139,20 +97,14 @@
       max-width: 90%;
       width: 400px;
     }
-    
     .popup-message.active, .update-date-popup.active { display: block; }
-    
     .popup-icon {
       font-size: 40px;
       margin-bottom: 15px;
     }
-    
     .success-icon { color: #2e7d32; }
     .error-icon { color: #b30000; }
-    .warning-icon { color: #ff8f00; }
-    
     button i { margin-left: 8px; }
-    
     #passwordError {
       color: #b30000;
       font-size: 14px;
@@ -243,134 +195,32 @@
     #btn-start-app:hover {
       background-color: #8c0000;
     }
-    
-    /* تحسينات للجوال */
-    @media (max-width: 768px) {
-      .popup-message {
-          width: 90%;
-          padding: 15px;
-      }
-      
-      button {
-          padding: 12px 15px;
-          font-size: 16px;
-      }
-      
-      input, select, textarea {
-          font-size: 16px;
-      }
-
-      nav button {
-          padding: 8px 12px;
-          font-size: 14px;
-      }
+	.whatsapp-link {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 15px;
+        background-color: #25D366;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
     }
 
-    /* تحسينات نافذة الطوارئ */
-    #emergencyPopup {
-      max-height: 90vh;
-      overflow-y: auto;
-      z-index: 2000; /* تغيير قيمة z-index لتظهر فوق كل شيء */
-      background: white;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-    
-    #emergencyRecipientsList {
-      max-height: 200px;
-      overflow-y: auto;
-      margin: 10px 0;
-      border: 1px solid #eee;
-      padding: 10px;
-      border-radius: 5px;
-    }
-    
-    .recipient-item {
-      padding: 8px;
-      border-bottom: 1px solid #f0f0f0;
-      display: flex;
-      justify-content: space-between;
-    }
-    
-    /* نافذة التقييمات */
-    .rating-item {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      margin-bottom: 10px;
-    }
-    
-    .rating-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 5px;
-    }
-    
-    .rating-comment {
-      background-color: #f9f9f9;
-      padding: 8px;
-      border-radius: 5px;
-      margin-top: 5px;
+    .whatsapp-link:hover {
+        background-color: #1ebe5d;
     }
 
-    /* أنماط قسم الإشعارات الجديد */
-    #notifications {
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-    
-    .notification-item {
-      background: white;
-      border-radius: 8px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      border-right: 4px solid #b30000;
-    }
-    
-    .notification-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      color: #b30000;
-      font-weight: bold;
-    }
-    
-    .notification-message {
-      color: #333;
-      line-height: 1.6;
-    }
-    
-    .notification-time {
-      color: #666;
-      font-size: 13px;
-      margin-top: 10px;
-      text-align: left;
-    }
-    
-    .notification-badge {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background-color: #b30000;
-      color: white;
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      z-index: 100;
-      cursor: pointer;
-    }
-    
-    #notificationsBadge {
-      display: none;
+    .whatsapp-link i {
+        margin-right: 8px;
+        font-size: 1.2em;
     }
   </style>
-   <!-- jsPDF and AutoTable plugin -->
-   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <!-- jsPDF and AutoTable plugin -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  <!-- CryptoJS for password hashing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
 
@@ -380,7 +230,7 @@
   <p>جاري المعالجة...</p>
 </div>
 
-<!-- قسم الترحيب -->
+<!-- قسم الترحيب الجديد -->
 <div id="welcome" class="section active">
   <div style="max-width: 800px; margin: 0 auto;">
     <h1>
@@ -400,9 +250,8 @@
         <li><i class="fas fa-check-circle" style="color: #2e7d32;"></i> البحث عن المتبرعين حسب فصيلة الدم والموقع</li>
         <li><i class="fas fa-check-circle" style="color: #2e7d32;"></i> التواصل المباشر مع المتبرعين عبر الهاتف أو الواتساب</li>
         <li><i class="fas fa-check-circle" style="color: #2e7d32;"></i> تحديث بيانات المتبرعين بسهولة</li>
-        <li><i class="fas fa-check-circle" style="color: #2e7d32;"></i> نظام تنبيهات للمتبرعين في حالات الطوارئ</li>
-        <li><i class="fas fa-check-circle" style="color: #2e7d32;"></i> تقييم المتبرعين لتعزيز الثقة في النظام</li>
       </ul>
+      
     </div>
     
     <button id="btn-start-app">
@@ -410,51 +259,36 @@
     </button>
     
     <p style="margin-top: 5px; font-size: 14px; color: #666; line-height: 1.4;">
-      <i class="fas fa-info-circle"></i> مصمم الموقع نبيل سالم اليافعي<br>
-      <p><a href="https://wa.me/966511479262" target="_blank">00966511479262 أضغط للتواصل مباشرة</a></p>
+  <i class="fas fa-info-circle"></i> مصمم الموقع نبيل سالم اليافعي<br>
+ 
+<a class="whatsapp-link" href="https://wa.me/966511479262" target="_blank">
+    <i class="fab fa-whatsapp"></i> 00966511479262 أضغط للتواصل مباشرة
+</a>
+
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
     </p>
   </div>
 </div>
 
 <header>
-  <div style="display: flex; align-items: center; justify-content: space-between;">
-    <div>
-      <i class="fas fa-tint"></i> تطبيق قطرة أمل ... قطرة أمل تنقذ حياة
-    </div>
-    <div id="notificationsBadge" class="notification-badge" title="إشعارات جديدة">
-      <i class="fas fa-bell"></i>
-    </div>
-  </div>
+  <i class="fas fa-tint"></i> تطبيق قطرة أمل ... قطرة أمل تنقذ حياة
 </header>
-<p style="font-size: 17px; color: #333; line-height: 1.3; margin: 5px 0; font-weight: 600; text-align: center;">
-  <i class="fas fa-info-circle"></i> تم تصميم هذا الموقع لتسهيل عملية البحث عن المتبرعين بالدم، وسهولة التواصل مع المتبرعين.
+<p style="font-size: 17px; color: #333; line-height: 1.3; margin: 5px 0; font-weight: 600; text-align: center; display: none;">
+  <i class="fas fa-info-circle"></i> تم تصميم هذا الموقع لربط المحتاجين بالمتبرعين مباشرة.
 </p>
 
 <nav>
   <button id="btn-show-register"><i class="fas fa-user-plus"></i> تسجيل متبرع جديد</button>
+  <button id="btn-show-password-popup"><i class="fas fa-edit"></i> تعديل البيانات</button>
   <button id="btn-show-search"><i class="fas fa-search"></i> بحث عن متبرع</button>
-  <button id="btn-send-emergency"><i class="fas fa-bell"></i> تنبيه طارئ</button>
-  <button id="btn-show-ratings"><i class="fas fa-star"></i> عرض التقييمات</button>
-  <button id="btn-show-suggestions"><i class="fas fa-lightbulb"></i> اقتراحات</button>
-  <button id="btn-show-notifications"><i class="fas fa-bell"></i> الإشعارات</button>
 </nav>
-
-<!-- قسم الإشعارات الجديد -->
-<div id="notifications" class="section">
-  <h3><i class="fas fa-bell"></i> الإشعارات</h3>
-  <p style="font-size: 15px; color: #b71c1c; line-height: 1.2; margin-top: 0; font-weight: 500;">
-    <i class="fas fa-info-circle"></i> عرض جميع الإشعارات الواردة لك
-  </p>
-  
-  <div id="notificationsList">
-    <!-- سيتم ملء الإشعارات هنا -->
-  </div>
-</div>
 
 <div id="register" class="section">
   <h3 style="margin-bottom: 4px;"><i class="fas fa-user-plus"></i> تسجيل متبرع جديد</h3>
   <p style="font-size: 15px; color: #b71c1c; line-height: 1.2; margin-top: 0; font-weight: 500;">
-    <i class="fas fa-info-circle"></i> الرجاء تعبئة البيانات المطلوبة
+    <i class="fas fa-info-circle"></i> الرجاء تعبئة البيانات المطلوبة (مكانك الحالي)  
   </p>
   
   <div class="input-icon">
@@ -466,7 +300,9 @@
     <i class="fas fa-phone"></i>
     <input type="tel" id="donorPhone" class="phone-input" placeholder="رقم الهاتف" inputmode="numeric" dir="ltr">
   </div>
-  
+  <label class="field-label">
+    <i class="fas fa-tint"></i> رقم الواتساب ليس إجباري ولاكن في حال سجلت رقم الواتساب يجب أن يبدأ 967 
+  </label>
   <div class="input-icon">
     <i class="fab fa-whatsapp"></i>
     <input type="tel" id="donorWhatsapp" class="whatsapp-input" placeholder="967712345678 (اختياري)" inputmode="numeric" dir="ltr">
@@ -488,48 +324,32 @@
   </div>
   
   <label class="field-label">
-    <i class="fas fa-calendar-alt"></i> تاريخ آخر تبرع (اختياري)
+    <i class="fas fa-calendar-alt"></i> تاريخ آخر تبرع (إذا لم تتبرع بعد أتركة فارغاً وتستطيع تعديله في جدول البيانات في حال تبرعت)
   </label>
   <div class="input-icon">
     <i class="far fa-calendar"></i>
     <input type="date" id="donorLastDate">
   </div>
   
-  <label class="field-label">
-    <i class="fas fa-tint"></i> فصيلة الدم
-  </label>
+   
+  <div class="input-icon">
+    <i class="fas fa-info-circle"></i>
+    <select id="donorStatus">
+      <option value="" disabled selected>حالة التبرع</option>
+      <option value="متاح للتبرع">متاح للتبرع</option>
+      <option value="غير متاح للتبرع">غير متاح للتبرع</option>
+      <option value="خارج المدينة">خارج المدينة</option>
+    </select>
+  </div>
+
   <div class="input-icon">
     <i class="fas fa-chevron-down"></i>
     <select id="donorBlood">
-      <option disabled selected value="">اختر فصيلة الدم</option>
+      <option disabled selected value="">اختر فصيلة دمك</option>
       <option>+A</option><option>-A</option>
       <option>+B</option><option>-B</option>
       <option>+AB</option><option>-AB</option>
       <option>+O</option><option>-O</option>
-    </select>
-  </div>
-  
-  <label class="field-label">
-    <i class="fas fa-bell"></i> تلقي تنبيهات الطوارئ
-  </label>
-  <div class="input-icon">
-    <i class="fas fa-chevron-down"></i>
-    <select id="donorNotification">
-      <option value="enabled">نعم، أريد تلقي التنبيهات</option>
-      <option value="disabled">لا، لا أريد تلقي التنبيهات</option>
-    </select>
-  </div>
-  
-  <label class="field-label">
-    <i class="fas fa-user-clock"></i> حالة التوفر الحالية
-  </label>
-  <div class="input-icon">
-    <i class="fas fa-chevron-down"></i>
-    <select id="donorAvailability">
-      <option value="available">متاح للتبرع</option>
-      <option value="busy">مشغول حالياً</option>
-      <option value="away">خارج المدينة</option>
-      <option value="unavailable">غير متاح</option>
     </select>
   </div>
   
@@ -601,30 +421,6 @@
       </select>
     </div>
     
-    <label class="field-label">
-      <i class="fas fa-bell"></i> تلقي تنبيهات الطوارئ
-    </label>
-    <div class="input-icon">
-      <i class="fas fa-chevron-down"></i>
-      <select id="editNotification">
-        <option value="enabled">نعم، أريد تلقي التنبيهات</option>
-        <option value="disabled">لا، لا أريد تلقي التنبيهات</option>
-      </select>
-    </div>
-    
-    <label class="field-label">
-      <i class="fas fa-user-clock"></i> حالة التوفر الحالية
-    </label>
-    <div class="input-icon">
-      <i class="fas fa-chevron-down"></i>
-      <select id="editAvailability">
-        <option value="available">متاح للتبرع</option>
-        <option value="busy">مشغول حالياً</option>
-        <option value="away">خارج المدينة</option>
-        <option value="unavailable">غير متاح</option>
-      </select>
-    </div>
-    
     <button id="btn-save-edit"><i class="fas fa-save"></i> حفظ التعديل</button>
     <button id="btn-delete-donor"><i class="fas fa-trash-alt"></i> حذف المتبرع</button>
     <button id="btn-cancel-edit"><i class="fas fa-times"></i> إلغاء</button>
@@ -671,30 +467,13 @@
         <th><i class="fas fa-home"></i> السكن</th>
         <th><i class="fab fa-whatsapp"></i> الواتساب</th>
         <th><i class="fas fa-calendar-alt"></i> آخر تبرع</th>
-        <th><i class="fas fa-star"></i> التقييم</th>
-        <th><i class="fas fa-user-clock"></i> الحالة</th>
-        <th><i class="fas fa-edit"></i> تعديل</th>
+        <th><i class="fas fa-edit"></i> تحديث آخر تبرع</th>
       </tr>
     </thead>
     <tbody id="donorsTable"></tbody>
   </table>
 </div>
 
-<!-- قسم عرض التقييمات -->
-<div id="ratings" class="section">
-  <h3><i class="fas fa-star"></i> تقييمات المتبرعين</h3>
-  
-  <div class="input-icon">
-    <i class="fas fa-search"></i>
-    <input type="text" id="searchRatingsInput" placeholder="ابحث باسم المتبرع أو رقمه">
-  </div>
-  
-  <div id="ratingsContainer" style="margin-top: 20px;">
-    <!-- سيتم ملء التقييمات هنا -->
-  </div>
-</div>
-
-<!-- النوافذ المنبثقة -->
 <div id="successPopup" class="popup-message">
   <div class="popup-icon success-icon">
     <i class="fas fa-check-circle"></i>
@@ -709,6 +488,27 @@
   <p id="errorMessage"></p>
 </div>
 
+<div id="passwordPopup" class="popup-message">
+  <div class="popup-icon">
+    <i class="fas fa-lock"></i>
+  </div>
+  <h3>التحقق من الهوية</h3>
+  <p>للدخول إلى قسم التعديل، يرجى إدخال كلمة المرور</p>
+  
+  <div class="input-icon">
+    <i class="fas fa-key"></i>
+    <input type="password" id="passwordInput" placeholder="كلمة المرور">
+  </div>
+  
+  <p id="passwordError"></p>
+  
+  <button id="btn-check-password"><i class="fas fa-check"></i> دخول</button>
+  <button id="btn-close-password-popup"><i class="fas fa-times"></i> إغلاق</button>
+  <p style="font-size:12px;color:gray;">
+    <i class="fas fa-info-circle"></i> للتعديل أو الحذف، تواصل على الواتس: 00966511479262 نبيل اليافعي
+  </p>
+</div>
+
 <div id="updateDatePopup" class="update-date-popup">
   <div class="popup-icon">
     <i class="fas fa-calendar-check"></i>
@@ -721,134 +521,12 @@
   </div>
   
   <button id="btn-save-donation-date"><i class="fas fa-save"></i> حفظ</button>
-  <button id="btn-close-update-date-popup"><i class="fas fa-times"></i> إلغاء</button>
-</div>
-
-<div id="emergencyPopup" class="popup-message">
-  <div class="popup-icon warning-icon">
-    <i class="fas fa-exclamation-triangle"></i>
-  </div>
-  <h3>إرسال تنبيه طارئ</h3>
-  
-  <div class="input-icon">
-    <i class="fas fa-tint"></i>
-    <select id="emergencyBloodType" required>
-      <option value="">اختر فصيلة الدم</option>
-      <option>+A</option><option>-A</option>
-      <option>+B</option><option>-B</option>
-      <option>+AB</option><option>-AB</option>
-      <option>+O</option><option>-O</option>
-    </select>
-  </div>
-  
-  <div class="input-icon">
-    <i class="fas fa-map-marker-alt"></i>
-    <input type="text" id="emergencyLocation" placeholder="المحافظة والمديرية" required>
-  </div>
-  
-  <textarea id="emergencyMessage" placeholder="أدخل رسالة الطوارئ هنا..." required></textarea>
-  
-  <div id="emergencyRecipientsCount" style="margin:10px 0;font-weight:bold;color:#b30000;"></div>
-  <div id="emergencyRecipientsList"></div>
-  
-  <button id="btn-confirm-emergency"><i class="fas fa-paper-plane"></i> إرسال</button>
-  <button id="btn-cancel-emergency"><i class="fas fa-times"></i> إلغاء</button>
-</div>
-
-<div id="ratingPopup" class="popup-message" style="width: 90%; max-width: 600px;">
-  <div class="popup-icon">
-    <i class="fas fa-star"></i>
-  </div>
-  <h3>تقييم المتبرع: <span id="ratedDonorName"></span></h3>
-  
-  <div class="stars-container" style="margin: 20px 0;">
-    <i class="far fa-star" data-rating="1"></i>
-    <i class="far fa-star" data-rating="2"></i>
-    <i class="far fa-star" data-rating="3"></i>
-    <i class="far fa-star" data-rating="4"></i>
-    <i class="far fa-star" data-rating="5"></i>
-  </div>
-  
-  <textarea id="ratingComment" placeholder="تعليقك (اختياري)..."></textarea>
-  
-  <div id="previousRatings" style="margin-top: 20px; max-height: 200px; overflow-y: auto;">
-    <h4 style="color: #b30000; border-bottom: 1px solid #eee; padding-bottom: 5px;">التقييمات السابقة</h4>
-    <div id="ratingsList"></div>
-  </div>
-  
-  <button id="btn-submit-rating"><i class="fas fa-check"></i> تقديم التقييم</button>
-  <button id="btn-cancel-rating"><i class="fas fa-times"></i> إلغاء</button>
-</div>
-
-<div id="suggestionsPopup" class="popup-message" style="width: 90%; max-width: 600px;">
-  <div class="popup-icon">
-    <i class="fas fa-lightbulb"></i>
-  </div>
-  <h3>اقتراحات تطوير التطبيق</h3>
-  
-  <p style="text-align: right; color: #666;">
-    نرحب بآرائكم واقتراحاتكم لتطوير تطبيق قطرة أمل وتحسين خدماته
-  </p>
-  
-  <div class="input-icon">
-    <i class="fas fa-user"></i>
-    <input type="text" id="suggestionName" placeholder="اسمك (اختياري)">
-  </div>
-  
-  <div class="input-icon">
-    <i class="fas fa-phone"></i>
-    <input type="tel" id="suggestionContact" class="phone-input" placeholder="رقم للتواصل (اختياري)" dir="ltr">
-  </div>
-  
-  <textarea id="suggestionText" placeholder="أدخل اقتراحك هنا..." required></textarea>
-  
-  <button id="btn-submit-suggestion"><i class="fas fa-paper-plane"></i> إرسال الاقتراح</button>
-  <button id="btn-cancel-suggestion"><i class="fas fa-times"></i> إلغاء</button>
-</div>
-
-<div id="donorSelfEditPopup" class="popup-message">
-  <div class="popup-icon">
-    <i class="fas fa-user-edit"></i>
-  </div>
-  <h3>تعديل بياناتي</h3>
-  
-  <div class="input-icon">
-    <i class="fab fa-whatsapp"></i>
-    <input type="tel" id="selfEditWhatsapp" class="whatsapp-input" placeholder="رقم الواتساب" dir="ltr">
-  </div>
-  
-  <label class="field-label">
-    <i class="fas fa-calendar-alt"></i> تاريخ آخر تبرع
-  </label>
-  <div class="input-icon">
-    <i class="far fa-calendar"></i>
-    <input type="date" id="selfEditLastDate">
-  </div>
-  
-  <label class="field-label">
-    <i class="fas fa-user-clock"></i> حالة التوفر الحالية
-  </label>
-  <div class="input-icon">
-    <i class="fas fa-chevron-down"></i>
-    <select id="selfEditAvailability">
-      <option value="available">متاح للتبرع</option>
-      <option value="busy">مشغول حالياً</option>
-      <option value="away">خارج المدينة</option>
-      <option value="unavailable">غير متاح</option>
-    </select>
-  </div>
-  
-  <button id="btn-save-self-edit"><i class="fas fa-save"></i> حفظ التعديلات</button>
-  <button id="btn-cancel-self-edit"><i class="fas fa-times"></i> إلغاء</button>
+  <button id="btn-close-update-date-popup"><i class="fas fa-times"></i> إغلاق</button>
 </div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-  import { 
-    getFirestore, collection, addDoc, getDocs, query, where, doc, 
-    updateDoc, deleteDoc, runTransaction, getDoc, orderBy, limit, onSnapshot
-  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-  import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-messaging.js";
+  import { getFirestore, collection, addDoc, getDocs, query, where, doc, updateDoc, deleteDoc, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDfIBS2gB4lkRZ1_ZerLk451EVfafrfWSM",
@@ -856,89 +534,38 @@
     projectId: "qtratamal",
     storageBucket: "qtratamal.appspot.com",
     messagingSenderId: "491056452067",
-    appId: "1:491056452067:web:0c8ef019a651cd47c290d6",
-    databaseURL: "https://qtratamal.firebaseio.com"
+    appId: "1:491056452067:web:0c8ef019a651cd47c290d6"
   };
-  
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
-  const messaging = getMessaging(app);
-
-  // جلب FCM Token وتخزينه في قاعدة البيانات
-  async function requestAndStoreFCMToken(donorDocId) {
-    try {
-      const permission = await Notification.requestPermission();
-      if (permission === 'granted') {
-        const fcmToken = await getToken(messaging, { vapidKey: 'BBYQsTZh5yVtwGm2ohGqVku7Hb-LwxxkNif6mMRvHsdKcAhGpTGv30lHv9R24wEUepkakzuKcts6keGU75wOE_0' });
-        if (fcmToken && donorDocId) {
-          await updateDoc(doc(db, 'donors', donorDocId), { fcmToken });
-          console.log('تم حفظ FCM Token بنجاح');
-        }
-      }
-    } catch (err) {
-      console.warn("فشل الحصول على FCM Token", err);
-    }
-  }
-
-  // استقبال الإشعارات عند فتح التطبيق
-  onMessage(messaging, (payload) => {
-    console.log('تم استقبال إشعار جديد:', payload);
-    showNotification(payload.notification.title, payload.notification.body);
-    updateNotificationsBadge();
-  });
-
-  // عرض الإشعار في المتصفح
-  function showNotification(title, body) {
-    if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification(title, { body, icon: '/favicon.ico' });
-    }
-    
-    // عرض الإشعار في التطبيق
-    const notificationElement = document.createElement('div');
-    notificationElement.className = 'notification-item';
-    notificationElement.innerHTML = `
-      <div class="notification-header">
-        <span><i class="fas fa-bell"></i> ${title}</span>
-      </div>
-      <div class="notification-message">${body}</div>
-      <div class="notification-time">${new Date().toLocaleString('ar')}</div>
-    `;
-    
-    const notificationsList = document.getElementById('notificationsList');
-    if (notificationsList) {
-      notificationsList.insertBefore(notificationElement, notificationsList.firstChild);
-    }
-    
-    updateNotificationsBadge();
-  }
-
-  // تحديث بادج الإشعارات
-  function updateNotificationsBadge() {
-    const badge = document.getElementById('notificationsBadge');
-    if (badge) {
-      const notificationsCount = document.querySelectorAll('#notificationsList .notification-item').length;
-      badge.style.display = notificationsCount > 0 ? 'flex' : 'none';
-      badge.innerHTML = notificationsCount > 0 ? notificationsCount : '<i class="fas fa-bell"></i>';
-    }
-  }
 
   let currentDonorDocId = null;
   let currentDisplayedDonors = [];
   let isProcessing = false;
   const pendingOperations = new Set();
-  let donorsCache = null;
-  let lastFetchTime = null;
-  let searchTimeout;
+
+  // كلمة المرور المشفرة
+  const PASSWORD_HASH = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
 
   // وظائف مساعدة
-  function showLoading(message = 'جاري المعالجة...') {
-    const loader = document.getElementById('loadingIndicator');
-    loader.style.display = 'block';
-    loader.querySelector('p').textContent = message;
+  function showLoading() {
+    document.getElementById('loadingIndicator').style.display = 'block';
   }
 
   function hideLoading() {
     document.getElementById('loadingIndicator').style.display = 'none';
+  }
+
+  function disableButtons() {
+    document.querySelectorAll('button').forEach(btn => {
+      btn.disabled = true;
+    });
+  }
+
+  function enableButtons() {
+    document.querySelectorAll('button').forEach(btn => {
+      btn.disabled = false;
+    });
   }
 
   function showMessage(msg, type = 'success') {
@@ -951,13 +578,13 @@
   }
 
   function formatDate(dateString) {
-    if (!dateString) return '—';
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  }
+  if (!dateString) return '—';
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
 
   function normalizeArabic(text) {
     return text
@@ -970,27 +597,6 @@
       .replace(/\s+/g, ' ');
   }
 
-  function renderRatingStars(rating) {
-    let stars = '';
-    for (let i = 1; i <= 5; i++) {
-      stars += i <= rating 
-        ? '<i class="fas fa-star" style="color:gold"></i>'
-        : '<i class="far fa-star" style="color:gold"></i>';
-    }
-    return stars;
-  }
-
-  function getAvailabilityText(availability) {
-    switch(availability) {
-      case 'available': return 'متاح';
-      case 'busy': return 'مشغول';
-      case 'away': return 'خارج المدينة';
-      case 'unavailable': return 'غير متاح';
-      default: return 'متاح';
-    }
-  }
-
-  // وظائف التطبيق الأساسية
   async function addDonor() {
     if (isProcessing) return;
     
@@ -999,6 +605,7 @@
     const donorPhone = document.getElementById('donorPhone').value.trim();
     const btn = document.getElementById('btn-add-donor');
     
+    // التحقق من التكرار المحلي أولاً
     if (pendingOperations.has(donorPhone)) {
       showMessage('جاري معالجة هذا المتبرع، يرجى الانتظار...', 'error');
       return;
@@ -1028,7 +635,7 @@
       isProcessing = true;
       pendingOperations.add(donorPhone);
       btn.disabled = true;
-      showLoading('جاري تسجيل المتبرع...');
+      showLoading();
       
       // التحقق من التكرار على السيرفر
       const phoneSnap = await getDocs(query(collection(db, 'donors'), where('phone', '==', donorPhone)));
@@ -1047,8 +654,6 @@
         lastDate: document.getElementById('donorLastDate').value || null,
         whatsapp: donorWhatsapp || null,
         blood: document.getElementById('donorBlood').value,
-        notifications: document.getElementById('donorNotification').value === 'enabled',
-        availability: document.getElementById('donorAvailability').value,
         createdAt: new Date().toISOString()
       };
       
@@ -1057,15 +662,10 @@
         return; 
       }
 
-      const docRef = await addDoc(collection(db, 'donors'), d);
-      await requestAndStoreFCMToken(docRef.id);
-      
+      await addDoc(collection(db, 'donors'), d);
       showMessage('تم تسجيل بياناتك بنجاح جزاك الله خير');
       document.querySelectorAll('#register input').forEach(i => i.value = '');
       document.getElementById('donorBlood').selectedIndex = 0;
-      
-      // تحديث البيانات المخزنة مؤقتاً
-      donorsCache = null;
     } catch (e) {
       console.error(e);
       showMessage('حدث خطأ أثناء التسجيل', 'error');
@@ -1091,11 +691,12 @@
     try {
       isProcessing = true;
       btn.disabled = true;
-      showLoading('جاري البحث عن المتبرع...');
+      showLoading();
       
-      const donors = await getDonors();
+      const snap = await getDocs(collection(db, 'donors'));
+      const all = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       const normInput = normalizeArabic(input);
-      const found = donors.find(d => {
+      const found = all.find(d => {
         const normName = normalizeArabic(d.name || '');
         const normPhone = normalizeArabic(d.phone || '');
         return normName === normInput || normPhone === normInput;
@@ -1113,8 +714,6 @@
         document.getElementById('editLocation').value = found.location || '';
         document.getElementById('editLastDate').value = found.lastDate || '';
         document.getElementById('editBlood').value = found.blood;
-        document.getElementById('editNotification').value = found.notifications ? 'enabled' : 'disabled';
-        document.getElementById('editAvailability').value = found.availability || 'available';
       } else {
         showMessage('المتبرع غير موجود', 'error');
       }
@@ -1141,15 +740,13 @@
       lastDate: document.getElementById('editLastDate').value || null,
       whatsapp: document.getElementById('editWhatsapp').value.trim() || null,
       blood: document.getElementById('editBlood').value,
-      notifications: document.getElementById('editNotification').value === 'enabled',
-      availability: document.getElementById('editAvailability').value,
       updatedAt: new Date().toISOString()
     };
     
     try {
       isProcessing = true;
       btn.disabled = true;
-      showLoading('جاري حفظ التعديلات...');
+      showLoading();
       
       if (updated.whatsapp) {
         const whatsappRegex = /^967\d{9}$/;
@@ -1177,9 +774,6 @@
       showMessage('تم التعديل بنجاح');
       document.getElementById('editSection').style.display = 'none'; 
       currentDonorDocId = null;
-      
-      // تحديث البيانات المخزنة مؤقتاً
-      donorsCache = null;
     } catch (e) { 
       console.error(e); 
       showMessage('خطأ أثناء الحفظ', 'error'); 
@@ -1199,15 +793,12 @@
     try {
       isProcessing = true;
       btn.disabled = true;
-      showLoading('جاري حذف المتبرع...');
+      showLoading();
       
       await deleteDoc(doc(db, 'donors', currentDonorDocId)); 
       showMessage('تم حذف المتبرع بنجاح');
       document.getElementById('editSection').style.display = 'none'; 
       currentDonorDocId = null;
-      
-      // تحديث البيانات المخزنة مؤقتاً
-      donorsCache = null;
     } catch (e) {
       console.error(e);
       showMessage('حدث خطأ أثناء الحذف', 'error');
@@ -1223,27 +814,12 @@
     currentDonorDocId = null; 
   }
 
-  async function getDonors() {
-    const now = new Date().getTime();
-    
-    // إذا كانت البيانات مخزنة مؤقتاً ولم يمض أكثر من 5 دقائق
-    if (donorsCache && lastFetchTime && (now - lastFetchTime < 300000)) {
-      return donorsCache;
-    }
-    
-    const snap = await getDocs(collection(db, 'donors'));
-    donorsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    lastFetchTime = now;
-    
-    return donorsCache;
-  }
-
   function renderSearchTable(donors) {
     const tbody = document.getElementById('donorsTable'); 
     tbody.innerHTML = '';
     
     if (!donors.length) { 
-      tbody.innerHTML = '<tr><td colspan="11">لا يوجد متبرعون</td></tr>'; 
+      tbody.innerHTML = '<tr><td colspan="9">لا يوجد متبرعون</td></tr>'; 
       document.getElementById('donorCount').innerHTML = '<i class="fas fa-users"></i> عدد المتبرعين: 0'; 
       currentDisplayedDonors = []; 
       return; 
@@ -1251,13 +827,6 @@
     
     currentDisplayedDonors = donors; 
     document.getElementById('donorCount').innerHTML = `<i class="fas fa-users"></i> عدد المتبرعين: ${donors.length}`;
-    
-    const availabilityClasses = {
-      available: 'available',
-      busy: 'busy',
-      away: 'away',
-      unavailable: 'unavailable'
-    };
     
     donors.forEach(d => {
       const row = tbody.insertRow();
@@ -1278,38 +847,24 @@
         <td data-label="السكن">${d.location || '—'}</td>
         <td data-label="الواتساب">
           ${
-            d.whatsapp
-              ? `<a href="https://wa.me/${d.whatsapp}" target="_blank"
-                    style="color:green; text-decoration:none; font-weight:bold;
-                           display:flex; flex-direction:column; align-items:center;
-                           font-size: 0.95em;">
-                    <div style="display: flex; align-items: center; gap: 6px;">
-                      <i class="fab fa-whatsapp" style="font-size:1.2em;"></i>
-                      <span>${d.whatsapp}</span>
-                    </div>
-                    <small style="color:#006400; font-weight:normal; margin-top:5px; font-size:13px;">
-                      اضغط للتواصل واتساب مباشرة
-                    </small>
-                 </a>`
-              : "—"
-          }
+		 d.whatsapp
+      ? `<a href="https://wa.me/${d.whatsapp}" target="_blank"
+            style="color:green; text-decoration:none; font-weight:bold;
+                   display:flex; flex-direction:column; align-items:center;
+                   font-size: 0.95em;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <i class="fab fa-whatsapp" style="font-size:1.2em;"></i>
+              <span>${d.whatsapp}</span>
+            </div>
+            <small style="color:#006400; font-weight:normal; margin-top:5px; font-size:13px;">
+              اضغط للتواصل واتساب مباشرة
+            </small>
+         </a>`
+      : "—"
+  }
         </td>
         <td data-label="آخر تبرع">${d.lastDate ? formatDate(d.lastDate) : '—'}</td>
-        <td data-label="التقييم">
-          <div class="donor-rating" data-donor-id="${d.id}" data-donor-name="${d.name}">
-            ${renderRatingStars(d.rating || 0)}
-            <small>(${d.ratingCount || 0} تقييم)</small>
-          </div>
-        </td>
-        <td data-label="الحالة">
-          <span class="availability-badge ${availabilityClasses[d.availability] || 'available'}">
-            ${getAvailabilityText(d.availability)}
-          </span>
-        </td>
         <td data-label="تعديل">
-          <button data-donor-id="${d.id}" class="btn-self-edit" style="background-color:#1565c0;margin-bottom:5px;">
-            <i class="fas fa-user-edit"></i> تعديل بياناتي
-          </button>
           <button data-donor-id="${d.id}" class="btn-update-date">
             <i class="fas fa-edit"></i> تحديث آخر تبرع
           </button>
@@ -1319,17 +874,6 @@
     
     document.querySelectorAll('.btn-update-date').forEach(btn => {
       btn.addEventListener('click', () => enableEditDate(btn.getAttribute('data-donor-id')));
-    });
-    
-    document.querySelectorAll('.btn-self-edit').forEach(btn => {
-      btn.addEventListener('click', () => showDonorSelfEditPopup(btn.getAttribute('data-donor-id')));
-    });
-    
-    document.querySelectorAll('.donor-rating').forEach(rating => {
-      rating.addEventListener('click', () => showRatingPopup(
-        rating.getAttribute('data-donor-id'),
-        rating.getAttribute('data-donor-name')
-      ));
     });
   }
 
@@ -1341,23 +885,22 @@
     
     try {
       isProcessing = true;
-      showLoading('جاري البحث عن المتبرعين...');
+      showLoading();
       
-      const donors = await getDonors();
-      let filteredDonors = donors;
+      let q = collection(db, 'donors');
+      if (blood) q = query(q, where('blood', '==', blood));
       
-      if (blood) {
-        filteredDonors = filteredDonors.filter(d => d.blood === blood);
-      }
+      const snap = await getDocs(q);
+      let donors = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       
       if (text) {
-        filteredDonors = filteredDonors.filter(d => {
+        donors = donors.filter(d => {
           const fields = [d.name, d.phone, d.city, d.area, d.location].map(f => normalizeArabic(f || ''));
           return fields.some(f => f.includes(text));
         });
       }
       
-      renderSearchTable(filteredDonors);
+      renderSearchTable(donors);
     } catch (e) {
       console.error(e);
       showMessage('حدث خطأ أثناء البحث', 'error');
@@ -1387,7 +930,9 @@
     try { 
       isProcessing = true;
       btn.disabled = true;
-      showLoading('جاري تحديث التاريخ...');
+      showLoading();
+      
+      console.log('Updating donor:', currentDonorDocId, 'with date:', newDate);
       
       await updateDoc(doc(db, 'donors', currentDonorDocId), { 
         lastDate: newDate,
@@ -1405,9 +950,6 @@
       
       closeUpdateDatePopup(); 
       currentDonorDocId = null; 
-      
-      // تحديث البيانات المخزنة مؤقتاً
-      donorsCache = null;
     } catch(e) { 
       console.error('Error updating donation date:', e); 
       showMessage('حدث خطأ أثناء التحديث', 'error'); 
@@ -1423,405 +965,37 @@
     currentDonorDocId = null; 
   }
 
-  async function sendEmergencyAlert() {
-    const message = document.getElementById('emergencyMessage').value.trim();
-    const bloodType = document.getElementById('emergencyBloodType').value;
-    const location = document.getElementById('emergencyLocation').value.trim();
+  function showPasswordPopup() { 
+    document.getElementById('passwordPopup').classList.add('active'); 
+    document.getElementById('passwordInput').value = ''; 
+    document.getElementById('passwordError').style.display = 'none';
+  }
+
+  function closePasswordPopup() { 
+    document.getElementById('passwordPopup').classList.remove('active'); 
+    document.getElementById('passwordError').style.display = 'none';
+  }
+
+  async function checkPassword() { 
+    const inputPassword = document.getElementById('passwordInput').value;
+    const errorElement = document.getElementById('passwordError');
     
-    if (!message || !bloodType || !location) {
-      showMessage('يرجى تعبئة جميع الحقول المطلوبة', 'error');
+    if (!inputPassword) {
+      errorElement.textContent = 'يرجى إدخال كلمة المرور';
+      errorElement.style.display = 'block';
       return;
     }
-
-    try {
-      showLoading('جاري إعداد التنبيه...');
-      
-      // تقسيم الموقع إلى محافظة ومديرية
-      const [city, area] = location.split(/\s*\/\s*/);
-      
-      // البحث عن المتبرعين المناسبين
-      const q = query(
-        collection(db, 'donors'),
-        where('blood', '==', bloodType),
-        where('city', '==', city),
-        where('area', '==', area),
-        where('notifications', '==', true),
-        where('availability', 'in', ['available', 'busy'])
-      );
-      
-      const snap = await getDocs(q);
-      const donors = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      
-      if (donors.length === 0) {
-        showMessage('لا يوجد متبرعون متاحون في هذا الموقع', 'error');
-        return;
-      }
-      
-      // عرض النتائج مباشرة في النافذة المنبثقة
-      const recipientsList = donors.map(d => 
-          `<div class="recipient-item">
-              <span>${d.name}</span>
-              <span>${d.phone}</span>
-          </div>`
-      ).join('');
-      
-      document.getElementById('emergencyRecipientsCount').textContent = `سيتم إرسال التنبيه إلى ${donors.length} متبرع:`;
-      document.getElementById('emergencyRecipientsList').innerHTML = recipientsList;
-      
-      // إضافة زر تأكيد الإرسال النهائي
-      const confirmBtn = document.getElementById('btn-confirm-emergency');
-      confirmBtn.textContent = `تأكيد الإرسال إلى ${donors.length} متبرع`;
-      confirmBtn.onclick = async () => {
-          try {
-              showLoading('جاري إرسال التنبيه...');
-              await addDoc(collection(db, 'notifications'), {
-                  message,
-                  bloodType,
-                  city,
-                  area,
-                  timestamp: new Date().toISOString(),
-                  status: 'sent',
-                  recipients: donors.map(d => d.id)
-              });
-              
-              showMessage(`تم إرسال التنبيه إلى ${donors.length} متبرع`);
-              document.getElementById('emergencyPopup').classList.remove('active');
-          } catch (e) {
-              console.error(e);
-              showMessage('حدث خطأ أثناء إرسال التنبيه', 'error');
-          } finally {
-              hideLoading();
-          }
-      };
-      
-    } catch (e) {
-      console.error(e);
-      showMessage('حدث خطأ أثناء البحث عن المتبرعين', 'error');
-      hideLoading();
-    }
-  }
-
-  async function showRatingPopup(donorId, donorName) {
-    currentDonorDocId = donorId;
     
-    try {
-      showLoading('جاري تحميل التقييمات...');
-      
-      document.getElementById('ratedDonorName').textContent = donorName;
-      
-      // جلب التقييمات السابقة
-      const ratingsQuery = query(
-        collection(db, 'ratings'),
-        where('donorId', '==', donorId),
-        orderBy('timestamp', 'desc'),
-        limit(10)
-      );
-      
-      const ratingsSnap = await getDocs(ratingsQuery);
-      const ratings = ratingsSnap.docs.map(d => d.data());
-      
-      const ratingsList = document.getElementById('ratingsList');
-      ratingsList.innerHTML = ratings.length > 0 
-        ? ratings.map(r => `
-            <div style="padding: 10px; border-bottom: 1px solid #eee;">
-              <div style="display: flex; justify-content: space-between;">
-                <div>${renderRatingStars(r.rating)}</div>
-                <small style="color: #666;">${formatDate(r.timestamp)}</small>
-              </div>
-              ${r.comment ? `<p style="margin: 5px 0; color: #333;">${r.comment}</p>` : ''}
-            </div>
-          `).join('')
-        : '<p style="text-align: center; color: #666;">لا توجد تقييمات سابقة</p>';
-      
-      document.getElementById('ratingPopup').classList.add('active');
-      document.getElementById('ratingComment').value = '';
-      
-      // إعادة تعيين النجوم
-      document.querySelectorAll('#ratingPopup .stars-container i').forEach(s => {
-        s.className = 'far fa-star';
-        s.style.color = 'gold';
-      });
-      
-    } catch (e) {
-      console.error(e);
-      showMessage('حدث خطأ أثناء تحميل بيانات التقييم', 'error');
-    } finally {
-      hideLoading();
-    }
-  }
-
-  async function submitRating() {
-    const rating = parseInt(document.querySelector('#ratingPopup .stars-container .fas')?.getAttribute('data-rating') || 0);
-    const comment = document.getElementById('ratingComment').value.trim();
+    // حساب التجزئة SHA-256 لكلمة المرور المدخلة
+    const hashedInput = CryptoJS.SHA256(inputPassword).toString();
     
-    if (!rating || rating < 1 || rating > 5) {
-      showMessage('يرجى اختيار تقييم من 1 إلى 5 نجوم', 'error');
-      return;
-    }
-
-    try {
-      showLoading('جاري تسجيل التقييم...');
-      
-      // استخدام المعاملة لضمان التحديث الآمن
-      await runTransaction(db, async (transaction) => {
-        const donorRef = doc(db, 'donors', currentDonorDocId);
-        const donorDoc = await transaction.get(donorRef);
-        
-        if (!donorDoc.exists()) {
-          throw "المتبرع غير موجود";
-        }
-        
-        const currentData = donorDoc.data();
-        const currentRating = currentData.rating || 0;
-        const currentCount = currentData.ratingCount || 0;
-        
-        // حساب التقييم الجديد
-        const newCount = currentCount + 1;
-        const newRating = ((currentRating * currentCount) + rating) / newCount;
-        
-        transaction.update(donorRef, {
-          rating: newRating,
-          ratingCount: newCount
-        });
-        
-        // حفظ التقييم كسجل منفصل
-        await addDoc(collection(db, 'ratings'), {
-          donorId: currentDonorDocId,
-          rating,
-          comment,
-          timestamp: new Date().toISOString()
-        });
-      });
-      
-      showMessage('شكراً لتقييمك المتبرع!');
-      document.getElementById('ratingPopup').classList.remove('active');
-      
-      // تحديث الجدول
-      const donorIndex = currentDisplayedDonors.findIndex(d => d.id === currentDonorDocId);
-      if (donorIndex !== -1) {
-        const donor = currentDisplayedDonors[donorIndex];
-        donor.rating = ((donor.rating || 0) * (donor.ratingCount || 0) + rating) / ((donor.ratingCount || 0) + 1);
-        donor.ratingCount = (donor.ratingCount || 0) + 1;
-        renderSearchTable(currentDisplayedDonors);
-      }
-      
-      // تحديث البيانات المخزنة مؤقتاً
-      donorsCache = null;
-    } catch (e) {
-      console.error(e);
-      showMessage('حدث خطأ أثناء تسجيل التقييم', 'error');
-    } finally {
-      hideLoading();
-    }
-  }
-
-  async function showDonorSelfEditPopup(donorId) {
-    currentDonorDocId = donorId;
-    
-    try {
-      showLoading('جاري تحميل البيانات...');
-      
-      const docSnap = await getDoc(doc(db, 'donors', donorId));
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        document.getElementById('selfEditWhatsapp').value = data.whatsapp || '';
-        document.getElementById('selfEditLastDate').value = data.lastDate || '';
-        document.getElementById('selfEditAvailability').value = data.availability || 'available';
-        document.getElementById('donorSelfEditPopup').classList.add('active');
-      } else {
-        showMessage('المتبرع غير موجود', 'error');
-      }
-    } catch (e) {
-      console.error(e);
-      showMessage('حدث خطأ أثناء تحميل البيانات', 'error');
-    } finally {
-      hideLoading();
-    }
-  }
-
-  async function saveDonorSelfEdit() {
-    const whatsapp = document.getElementById('selfEditWhatsapp').value.trim();
-    const lastDate = document.getElementById('selfEditLastDate').value;
-    const availability = document.getElementById('selfEditAvailability').value;
-    
-    if (whatsapp && !/^967\d{9}$/.test(whatsapp)) {
-      showMessage('رقم الواتساب يجب أن يبدأ بـ 967 ويتكون من 12 رقماً', 'error');
-      return;
-    }
-
-    try {
-      showLoading('جاري حفظ التعديلات...');
-      
-      await updateDoc(doc(db, 'donors', currentDonorDocId), {
-        whatsapp: whatsapp || null,
-        lastDate: lastDate || null,
-        availability,
-        updatedAt: new Date().toISOString()
-      });
-      
-      showMessage('تم تحديث بياناتك بنجاح');
-      document.getElementById('donorSelfEditPopup').classList.remove('active');
-      
-      // تحديث الجدول
-      const donorIndex = currentDisplayedDonors.findIndex(d => d.id === currentDonorDocId);
-      if (donorIndex !== -1) {
-        const donor = currentDisplayedDonors[donorIndex];
-        donor.whatsapp = whatsapp || null;
-        donor.lastDate = lastDate || null;
-        donor.availability = availability;
-        renderSearchTable(currentDisplayedDonors);
-      }
-      
-      // تحديث البيانات المخزنة مؤقتاً
-      donorsCache = null;
-    } catch (e) {
-      console.error(e);
-      showMessage('حدث خطأ أثناء حفظ التعديلات', 'error');
-    } finally {
-      hideLoading();
-    }
-  }
-
-  function closeDonorSelfEditPopup() {
-    document.getElementById('donorSelfEditPopup').classList.remove('active');
-    currentDonorDocId = null;
-  }
-
-  async function showAllRatings() {
-    try {
-      showLoading('جاري تحميل التقييمات...');
-      
-      const ratingsQuery = query(
-        collection(db, 'ratings'),
-        orderBy('timestamp', 'desc'),
-        limit(50)
-      );
-      
-      const ratingsSnap = await getDocs(ratingsQuery);
-      const ratings = ratingsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-      
-      const container = document.getElementById('ratingsContainer');
-      container.innerHTML = '';
-      
-      if (ratings.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #666;">لا توجد تقييمات متاحة</p>';
-        return;
-      }
-      
-      // جلب أسماء المتبرعين
-      const donorIds = [...new Set(ratings.map(r => r.donorId))];
-      const donorsSnap = await getDocs(query(collection(db, 'donors'), where('__name__', 'in', donorIds)));
-      const donors = donorsSnap.docs.reduce((acc, doc) => {
-        acc[doc.id] = doc.data().name;
-        return acc;
-      }, {});
-      
-      ratings.forEach(rating => {
-        const ratingElement = document.createElement('div');
-        ratingElement.className = 'rating-item';
-        ratingElement.innerHTML = `
-          <div class="rating-header">
-            <div>
-              <strong>${donors[rating.donorId] || 'مجهول'}</strong>
-              <div>${renderRatingStars(rating.rating)}</div>
-            </div>
-            <small>${formatDate(rating.timestamp)}</small>
-          </div>
-          ${rating.comment ? `<div class="rating-comment">${rating.comment}</div>` : ''}
-        `;
-        container.appendChild(ratingElement);
-      });
-      
-    } catch (e) {
-      console.error(e);
-      showMessage('حدث خطأ أثناء تحميل التقييمات', 'error');
-    } finally {
-      hideLoading();
-    }
-  }
-
-  function showSuggestionsPopup() {
-    document.getElementById('suggestionsPopup').classList.add('active');
-    document.getElementById('suggestionText').value = '';
-    document.getElementById('suggestionName').value = '';
-    document.getElementById('suggestionContact').value = '';
-  }
-
-  function closeSuggestionsPopup() {
-    document.getElementById('suggestionsPopup').classList.remove('active');
-  }
-
-  async function submitSuggestion() {
-    const suggestion = document.getElementById('suggestionText').value.trim();
-    const name = document.getElementById('suggestionName').value.trim();
-    const contact = document.getElementById('suggestionContact').value.trim();
-    
-    if (!suggestion) {
-      showMessage('يرجى إدخال نص الاقتراح', 'error');
-      return;
-    }
-
-    try {
-      showLoading('جاري إرسال الاقتراح...');
-      
-      await addDoc(collection(db, 'suggestions'), {
-        suggestion,
-        name: name || 'مجهول',
-        contact: contact || null,
-        timestamp: new Date().toISOString(),
-        status: 'new'
-      });
-      
-      showMessage('شكراً لاقتراحك، سيتم دراسته من قبل الفريق');
-      closeSuggestionsPopup();
-    } catch (e) {
-      console.error(e);
-      showMessage('حدث خطأ أثناء إرسال الاقتراح', 'error');
-    } finally {
-      hideLoading();
-    }
-  }
-
-  async function loadNotifications() {
-    try {
-      showLoading('جاري تحميل الإشعارات...');
-      
-      const notificationsQuery = query(
-        collection(db, 'notifications'),
-        orderBy('timestamp', 'desc'),
-        limit(50)
-      );
-      
-      const snap = await getDocs(notificationsQuery);
-      const notifications = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      
-      const notificationsList = document.getElementById('notificationsList');
-      notificationsList.innerHTML = '';
-      
-      if (notifications.length === 0) {
-        notificationsList.innerHTML = '<p style="text-align: center; color: #666;">لا توجد إشعارات متاحة</p>';
-        return;
-      }
-      
-      notifications.forEach(notif => {
-        const notificationElement = document.createElement('div');
-        notificationElement.className = 'notification-item';
-        notificationElement.innerHTML = `
-          <div class="notification-header">
-            <span><i class="fas fa-bell"></i> تنبيه طارئ لفصيلة ${notif.bloodType}</span>
-          </div>
-          <div class="notification-message">${notif.message}</div>
-          <div class="notification-time">${formatDate(notif.timestamp)} - ${notif.city}/${notif.area}</div>
-        `;
-        notificationsList.appendChild(notificationElement);
-      });
-      
-      updateNotificationsBadge();
-    } catch (e) {
-      console.error(e);
-      showMessage('حدث خطأ أثناء تحميل الإشعارات', 'error');
-    } finally {
-      hideLoading();
+    if (hashedInput === PASSWORD_HASH) { 
+      closePasswordPopup(); 
+      showSection('edit'); 
+      errorElement.style.display = 'none';
+    } else {
+      errorElement.textContent = 'كلمة المرور غير صحيحة';
+      errorElement.style.display = 'block';
     }
   }
 
@@ -1854,91 +1028,122 @@
         currentDonorDocId = null;
         document.getElementById('editingDonorId').textContent = '';
       }
-      if (id === 'ratings') {
-        showAllRatings();
-      }
-      if (id === 'notifications') {
-        loadNotifications();
-      }
     }
   }
 
-  function setupSearch() {
-    const searchInput = document.getElementById('searchQuery');
+  function exportPDF() {
+    const { jsPDF } = window.jspdf;
+    const docPDF = new jsPDF();
+    const columns = [
+      { header: "الاسم", dataKey: "name" },
+      { header: "الهاتف", dataKey: "phone" },
+      { header: "الفصيلة", dataKey: "blood" },
+      { header: "المحافظة", dataKey: "city" },
+      { header: "المديرية", dataKey: "area" },
+      { header: "آخر تبرع", dataKey: "lastDate" }
+    ];
     
-    searchInput.addEventListener('input', () => {
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => {
-        searchDonors();
-      }, 500);
+    const rows = currentDisplayedDonors.map(d => ({
+      name: d.name,
+      phone: d.phone,
+      blood: d.blood,
+      city: d.city,
+      area: d.area,
+      lastDate: d.lastDate ? formatDate(d.lastDate) : 'غير محدد'
+    }));
+    
+    docPDF.autoTable({
+      columns: columns,
+      body: rows,
+      styles: { font: 'aealarabiya', halign: 'right' },
+      columnStyles: {
+        0: { cellWidth: 30 },
+        1: { cellWidth: 25 },
+        2: { cellWidth: 20 },
+        3: { cellWidth: 25 },
+        4: { cellWidth: 25 },
+        5: { cellWidth: 25 }
+      },
+      margin: { right: 10 },
+      didDrawPage: function (data) {
+        docPDF.setFontSize(18);
+        docPDF.text('قائمة المتبرعين - تطبيق قطرة أمل', 105, 20, null, null, 'center');
+      }
     });
+    
+    docPDF.save('donors.pdf');
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    // مستمعي أحداث التطبيق الرئيسية
     document.getElementById('btn-show-register').addEventListener('click', () => showSection('register'));
+    document.getElementById('btn-show-password-popup').addEventListener('click', showPasswordPopup);
     document.getElementById('btn-show-search').addEventListener('click', () => showSection('search'));
-    document.getElementById('btn-send-emergency').addEventListener('click', () => {
-      document.getElementById('emergencyPopup').classList.add('active');
-    });
-    document.getElementById('btn-show-ratings').addEventListener('click', () => showSection('ratings'));
-    document.getElementById('btn-show-suggestions').addEventListener('click', showSuggestionsPopup);
-    document.getElementById('btn-show-notifications').addEventListener('click', () => showSection('notifications'));
     document.getElementById('btn-add-donor').addEventListener('click', addDonor);
     document.getElementById('btn-search-donor-edit').addEventListener('click', searchDonorToEdit);
     document.getElementById('btn-save-edit').addEventListener('click', saveEdit);
     document.getElementById('btn-delete-donor').addEventListener('click', deleteDonor);
     document.getElementById('btn-cancel-edit').addEventListener('click', cancelEdit);
+    document.getElementById('btn-check-password').addEventListener('click', checkPassword);
+    document.getElementById('btn-close-password-popup').addEventListener('click', closePasswordPopup);
     document.getElementById('searchBlood').addEventListener('change', searchDonors);
+    document.getElementById('searchQuery').addEventListener('input', searchDonors);
     document.getElementById('btn-save-donation-date').addEventListener('click', saveDonationDate);
     document.getElementById('btn-close-update-date-popup').addEventListener('click', closeUpdateDatePopup);
-    document.getElementById('btn-confirm-emergency').addEventListener('click', sendEmergencyAlert);
-    document.getElementById('btn-cancel-emergency').addEventListener('click', () => {
-      document.getElementById('emergencyPopup').classList.remove('active');
-    });
-    document.getElementById('btn-submit-rating').addEventListener('click', submitRating);
-    document.getElementById('btn-cancel-rating').addEventListener('click', () => {
-      document.getElementById('ratingPopup').classList.remove('active');
-    });
-    document.getElementById('btn-start-app').addEventListener('click', () => {
-      showSection('register');
-    });
-    document.getElementById('btn-save-self-edit').addEventListener('click', saveDonorSelfEdit);
-    document.getElementById('btn-cancel-self-edit').addEventListener('click', closeDonorSelfEditPopup);
-    document.getElementById('btn-submit-suggestion').addEventListener('click', submitSuggestion);
-    document.getElementById('btn-cancel-suggestion').addEventListener('click', closeSuggestionsPopup);
-    document.getElementById('notificationsBadge').addEventListener('click', () => showSection('notifications'));
-    
-    // تفاعل النجوم في نافذة التقييم
-    document.querySelectorAll('#ratingPopup .stars-container i').forEach(star => {
-      star.addEventListener('mouseover', function() {
-        const rating = parseInt(this.getAttribute('data-rating'));
-        const stars = this.parentElement.querySelectorAll('i');
-        stars.forEach((s, idx) => {
-          s.className = idx < rating ? 'fas fa-star' : 'far fa-star';
-          s.style.color = 'gold';
-        });
-      });
-      
-      star.addEventListener('click', function() {
-        const rating = parseInt(this.getAttribute('data-rating'));
-        const stars = this.parentElement.querySelectorAll('i');
-        stars.forEach((s, idx) => {
-          s.className = idx < rating ? 'fas fa-star' : 'far fa-star';
-          s.style.color = 'gold';
-        });
-      });
-    });
-    
-    // إعداد البحث مع تأخير
-    setupSearch();
+    document.getElementById('downloadPdfBtn')?.addEventListener('click', exportPDF);
+    document.getElementById('btn-start-app').addEventListener('click', () => showSection('register'));
     
     // إظهار قسم الترحيب عند تحميل الصفحة
     showSection('welcome');
-    
-    // تحميل الإشعارات عند بدء التطبيق
-    loadNotifications();
   });
 </script>
+
+
+<!-- Firebase Cloud Messaging -->
+<script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-messaging.js"></script>
+<script>
+  const messaging = firebase.messaging();
+
+  Notification.requestPermission().then((permission) => {
+    if (permission === "granted") {
+      messaging.getToken({ vapidKey: "GcVvUHLKXltIrqHqAHVoaSFeaAIlSOI_gIyto0w4s0w" }).then((token) => {
+        console.log("FCM Token:", token);
+        // يمكنك حفظ هذا التوكن في قاعدة البيانات لربطه بالمستخدم
+      });
+    }
+  });
+
+  messaging.onMessage((payload) => {
+    console.log("Message received. ", payload);
+    const notificationTitle = payload.notification.title;
+    const notificationOptions = {
+      body: payload.notification.body,
+      icon: "/icon.png"
+    };
+    new Notification(notificationTitle, notificationOptions);
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    const welcomeShown = localStorage.getItem('welcomeMessageShown');
+    if (!welcomeShown) {
+      alert('مرحبًا بك في تطبيق قطرة أمل');
+      localStorage.setItem('welcomeMessageShown', 'true');
+    }
+  });
+</script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/firebase-messaging-sw.js')
+      .then(function(registration) {
+        console.log('Service Worker مسجل بنجاح:', registration.scope);
+      }).catch(function(err) {
+        console.error('فشل في تسجيل Service Worker:', err);
+      });
+  }
+</script>
+
 </body>
 </html>
