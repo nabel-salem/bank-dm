@@ -1,38 +1,24 @@
-// Import the scripts for Firebase SDKs
-importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js');
 
-// Initialize Firebase
+importScripts('https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/11.6.0/firebase-messaging-compat.js');
+
 firebase.initializeApp({
   apiKey: "AIzaSyDfIBS2gB4lkRZ1_ZerLk451EVfafrfWSM",
   authDomain: "qtratamal.firebaseapp.com",
   projectId: "qtratamal",
   storageBucket: "qtratamal.appspot.com",
   messagingSenderId: "491056452067",
-  appId: "1:491056452067:web:0c8ef019a651cd47c290d6",
-  databaseURL: "https://qtratamal.firebaseio.com"
+  appId: "1:491056452067:web:0c8ef019a651cd47c290d6"
 });
 
 const messaging = firebase.messaging();
 
-// Handle background messages
-messaging.setBackgroundMessageHandler(function(payload) {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload);
-  
-  // Customize notification here
+messaging.onBackgroundMessage(function(payload) {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: '/favicon.ico'
+    icon: '/icon.png'
   };
 
-  return self.registration.showNotification(notificationTitle, notificationOptions);
-});
-
-// Handle notification click
-self.addEventListener('notificationclick', function(event) {
-  event.notification.close();
-  event.waitUntil(
-    clients.openWindow('https://nabel-salem.github.io/bank-dm/')
-  );
+  self.registration.showNotification(notificationTitle, notificationOptions);
 });
