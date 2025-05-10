@@ -1498,6 +1498,40 @@
     }
   }
 
+  // دالة للتحقق من المتبرع الحالي وتحديث موقعه
+  async function checkAndUpdateCurrentDonor() {
+    try {
+      // الحصول على الموقع الحالي
+      const position = await getCurrentLocation();
+      
+      // البحث عن المتبرع الحالي باستخدام رقم الهاتف
+      const phone = prompt('الرجاء إدخال رقم هاتفك المسجل في التطبيق للتحقق من هويتك:');
+      if (!phone) return;
+      
+      const phoneSnap = await getDocs(query(collection(db, 'donors'), where('phone', '==', phone)));
+      
+      if (phoneSnap.empty) {
+        showMessage('رقم الهاتف غير مسجل في التطبيق', 'error');
+        return;
+      }
+      
+      const donorDoc = phoneSnap.docs[0];
+      const donorData = donorDoc.data();
+      
+      // تحديث موقع المتبرع
+      await updateDoc(doc(db, 'donors', donorDoc.id), {
+        coordinates: new GeoPoint(position.lat, position.lng),
+        updatedAt: new Date().toISOString()
+      });
+      
+      showMessage('تم تحديث موقعك بنجاح. شكراً لك على مساهمتك في إنقاذ الأرواح!');
+      
+    } catch (error) {
+      console.error('Error updating donor location:', error);
+      showMessage('حدث خطأ أثناء تحديث الموقع', 'error');
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-show-register').addEventListener('click', () => showSection('register'));
     document.getElementById('btn-show-password-popup').addEventListener('click', showPasswordPopup);
@@ -1570,9 +1604,26 @@
     });
     
     // أحداث نافذة طلب إذن الموقع
-    document.getElementById('allowLocation').addEventListener('click', () => {
+    document.getElementById('allowLocation').addEventListener('click', async () => {
       document.getElementById('locationPermission').style.display = 'none';
-      showMessage('تم منح إذن الوصول إلى الموقع. يمكنك الآن استخدام زر "البحث عن متبرعين قريبين"', 'success');
+      
+      try {
+        // الحصول على الموقع الحالي بعد منح الإذن
+        const position = await getCurrentLocation();
+        
+        // عرض رسالة تأكيد للمستخدم
+        const confirmUpdate = confirm('هل ترغب في تحديث موقعك الحالي في قاعدة البيانات إذا كنت متبرعاً مسجلاً؟');
+        
+        if (confirmUpdate) {
+          // استدعاء دالة التحقق والتحديث
+          await checkAndUpdateCurrentDonor();
+        } else {
+          showMessage('تم منح إذن الوصول إلى الموقع. يمكنك الآن استخدام زر "البحث عن متبرعين قريبين"', 'success');
+        }
+      } catch (error) {
+        console.error('Error getting location:', error);
+        showMessage('تم منح إذن الوصول إلى الموقع. يمكنك الآن استخدام زر "البحث عن متبرعين قريبين"', 'success');
+      }
     });
     
     document.getElementById('denyLocation').addEventListener('click', () => {
