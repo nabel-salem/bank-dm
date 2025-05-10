@@ -159,6 +159,9 @@
     #welcome li {
       margin-bottom: 10px;
       padding-right: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     #welcome .quote-box {
       margin: 30px 0;
@@ -291,6 +294,83 @@
       background-color: #b30000;
       color: white;
     }
+    
+    /* أنماط نافذة الإشعارات */
+    #notificationsPopup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      z-index: 2000;
+      text-align: center;
+      max-width: 90%;
+      width: 350px;
+    }
+    
+    #notificationsPopup h3 {
+      color: #b30000;
+      margin-top: 0;
+    }
+    
+    #notificationsList {
+      max-height: 300px;
+      overflow-y: auto;
+      margin: 15px 0;
+      text-align: right;
+    }
+    
+    .notification-item {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      text-align: right;
+    }
+    
+    .notification-item:last-child {
+      border-bottom: none;
+    }
+    
+    .notification-time {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    /* أنماط صفحة الترحيب للهواتف */
+    @media (max-width: 600px) {
+      #welcome h1 {
+        font-size: 22px;
+      }
+      
+      #welcome h2 {
+        font-size: 20px;
+      }
+      
+      #welcome h3 {
+        font-size: 18px;
+      }
+      
+      #welcome p {
+        font-size: 16px;
+      }
+      
+      #welcome ul {
+        font-size: 15px;
+      }
+      
+      #welcome li {
+        font-size: 14px;
+      }
+      
+      #btn-start-app {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
   </style>
   <!-- CryptoJS for password hashing -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
@@ -308,11 +388,27 @@
 <!-- نافذة طلب إذن الموقع -->
 <div id="locationPermission">
   <h3><i class="fas fa-map-marker-alt"></i> إذن الوصول إلى الموقع</h3>
-  <p>لتتمكن من رؤية المتبرعين القريبين منك، نحتاج إلى إذنك للوصول إلى موقعك الحالي.</p>
+  <p>لتتمكن من رؤية المتبرعين القريبين منك، نحتاج إلى إذنك للوصول إلى الموقع الحالي.</p>
+  <p style="color: #2e7d32; font-weight: bold;">بموافقتك، يمكنك مساعدة المحتاجين للدم بسرعة أكبر!</p>
   <div class="permission-buttons">
     <button id="allowLocation"><i class="fas fa-check"></i> الموافقة</button>
     <button id="denyLocation"><i class="fas fa-times"></i> رفض</button>
   </div>
+</div>
+
+<!-- نافذة الإشعارات -->
+<div id="notificationsPopup" class="popup-message">
+  <div class="popup-icon">
+    <i class="fas fa-bell"></i>
+  </div>
+  <h3>الإشعارات</h3>
+  <div id="notificationsList">
+    <div class="notification-item">
+      <p>مرحباً بك في تطبيق قطرة أمل! شكراً لانضمامك لمجتمع المتبرعين بالدم.</p>
+      <div class="notification-time">اليوم</div>
+    </div>
+  </div>
+  <button id="btn-close-notifications"><i class="fas fa-times"></i> إغلاق</button>
 </div>
 
 <!-- قسم الترحيب الجديد -->
@@ -329,14 +425,26 @@
         نسعى من خلال هذا التطبيق إلى إنقاذ حياة المرضى والمصابين الذين يحتاجون إلى نقل الدم بشكل عاجل.
       </p>
       
-      <h3>كيف يعمل التطبيق؟</h3>
+      <h3>مميزات التطبيق</h3>
       <ul>
-        <li><i class="fas fa-check-circle" style="color: #2e7d32;"></i> تسجيل المتبرعين الراغبين في المساعدة</li>
-        <li><i class="fas fa-check-circle" style="color: #2e7d32;"></i> البحث عن المتبرعين حسب فصيلة الدم والموقع</li>
-        <li><i class="fas fa-check-circle" style="color: #2e7d32;"></i> التواصل المباشر مع المتبرعين عبر الهاتف أو الواتساب</li>
-        <li><i class="fas fa-check-circle" style="color: #2e7d32;"></i> تحديث بيانات المتبرعين بسهولة</li>
+        <li><i class="fas fa-user-plus" style="color: #b30000;"></i> تسجيل متبرعين جدد بسهولة</li>
+        <li><i class="fas fa-search" style="color: #b30000;"></i> البحث عن متبرعين حسب فصيلة الدم والموقع</li>
+        <li><i class="fas fa-map-marker-alt" style="color: #b30000;"></i> تحديد المتبرعين القريبين من موقعك</li>
+        <li><i class="fas fa-phone" style="color: #b30000;"></i> التواصل المباشر مع المتبرعين عبر الهاتف أو الواتساب</li>
+        <li><i class="fas fa-edit" style="color: #b30000;"></i> تحديث بيانات المتبرعين بسهولة</li>
+        <li><i class="fas fa-bell" style="color: #b30000;"></i> إشعارات للمتبرعين عند الحاجة للدم</li>
       </ul>
       
+      <div class="quote-box">
+        <i class="fas fa-quote-left"></i>
+        <p>قطرة دم واحدة يمكنها إنقاذ حياة... كن بطلاً وساهم في إنقاذ الأرواح</p>
+      </div>
+      
+      <h3>كيف يعمل البحث عن متبرعين قريبين؟</h3>
+      <p>
+        عند الموافقة على مشاركة الموقع، يمكنك البحث عن المتبرعين الأقرب إليك جغرافياً. 
+        هذا يساعد في توفير الوقت والجهد عند الحاجة الضرورية للدم، خاصة في الحالات الطارئة.
+      </p>
     </div>
     
     <button id="btn-start-app">
@@ -363,6 +471,7 @@
   <button id="btn-show-register"><i class="fas fa-user-plus"></i> تسجيل متبرع جديد</button>
   <button id="btn-show-password-popup"><i class="fas fa-edit"></i> تعديل البيانات</button>
   <button id="btn-show-search"><i class="fas fa-search"></i> بحث عن متبرع</button>
+  <button id="btn-show-notifications"><i class="fas fa-bell"></i> الإشعارات (قريباً)</button>
 </nav>
 
 <div id="register" class="section">
@@ -381,7 +490,7 @@
     <input type="tel" id="donorPhone" class="phone-input" placeholder="رقم الهاتف" inputmode="numeric" dir="ltr">
   </div>
   <label class="field-label">
-    <i class="fas fa-tint"></i> رقم الواتساب ليس إجباري ولاكن في حال سجلت رقم الواتساب يجب أن يبدأ 967 
+    <i class="fab fa-whatsapp"></i> رقم الواتساب ليس إجباري ولاكن في حال سجلت رقم الواتساب يجب أن يبدأ 967 
   </label>
   <div class="input-icon">
     <i class="fab fa-whatsapp"></i>
@@ -404,11 +513,11 @@
   </div>
   
   <label class="field-label">
-    <i class="fas fa-map-marked-alt"></i> تحديد الموقع على الخريطة
+    <i class="fas fa-map-marked-alt"></i> تحديد الموقع بالضغط على استخدام الموقع لتفعيل المتبرعين القريبين.
   </label>
   <div id="locationPickerMap" style="height: 200px; margin: 10px 0; border: 2px solid #b30000; border-radius: 8px; display: none;"></div>
   <button id="btn-get-current-location" type="button" style="background-color: #2e7d32; color: white; border: none; border-radius: 8px; padding: 8px 15px; margin-bottom: 10px; cursor: pointer; width: 100%;">
-    <i class="fas fa-location-arrow"></i> استخدام موقعي الحالي
+    <i class="fas fa-location-arrow"></i> استخدام الموقع لتفعيل المتبرعين القريبين
   </button>
   <input type="hidden" id="donorLatitude">
   <input type="hidden" id="donorLongitude">
@@ -618,10 +727,6 @@
     <i class="fas fa-calendar-day"></i>
     <input type="date" id="newDonationDate">
   </div>
-  
-  <button id="btn-get-current-location-popup" type="button" style="background-color: #2e7d32; color: white; border: none; border-radius: 8px; padding: 8px 15px; margin: 10px 0; cursor: pointer; width: 100%;">
-    <i class="fas fa-location-arrow"></i> تحديث موقعي الحالي
-  </button>
   
   <button id="btn-save-donation-date"><i class="fas fa-save"></i> حفظ</button>
   <button id="btn-close-update-date-popup"><i class="fas fa-times"></i> إغلاق</button>
@@ -1235,7 +1340,7 @@
         <td data-label="المسافة">${d.distance ? `<i class="fas fa-location-arrow"></i> ${d.distance}` : '—'}</td>
         <td data-label="تعديل">
           <button data-donor-id="${d.id}" class="btn-update-date">
-            <i class="fas fa-edit"></i> تحديث بيانات
+            <i class="fas fa-edit"></i> تحديث تاريخ التبرع
           </button>
         </td>
       `;
@@ -1351,38 +1456,6 @@
     document.getElementById('newDonationDate').value = ''; 
   }
 
-  async function updateDonorLocation() {
-    if (!currentDonorDocId) return;
-    
-    try {
-      showLoading();
-      const position = await getCurrentLocation();
-      
-      await updateDoc(doc(db, 'donors', currentDonorDocId), { 
-        coordinates: new GeoPoint(position.lat, position.lng),
-        updatedAt: new Date().toISOString()
-      });
-      
-      showMessage('تم تحديث موقع المتبرع بنجاح');
-      
-      // تحديث الجدول مباشرة
-      const donorIndex = currentDisplayedDonors.findIndex(d => d.id === currentDonorDocId);
-      if (donorIndex !== -1) {
-        currentDisplayedDonors[donorIndex].coordinates = {
-          latitude: position.lat,
-          longitude: position.lng
-        };
-        renderSearchTable(currentDisplayedDonors);
-      }
-      
-    } catch (error) {
-      console.error('Error updating location:', error);
-      showMessage('حدث خطأ أثناء تحديث الموقع', 'error');
-    } finally {
-      hideLoading();
-    }
-  }
-
   async function saveDonationDate() {
     if (isProcessing) return;
     
@@ -1439,6 +1512,14 @@
   function closePasswordPopup() { 
     document.getElementById('passwordPopup').classList.remove('active'); 
     document.getElementById('passwordError').style.display = 'none';
+  }
+
+  function showNotifications() {
+    document.getElementById('notificationsPopup').classList.add('active');
+  }
+
+  function closeNotifications() {
+    document.getElementById('notificationsPopup').classList.remove('active');
   }
 
   async function checkPassword() { 
@@ -1536,6 +1617,7 @@
     document.getElementById('btn-show-register').addEventListener('click', () => showSection('register'));
     document.getElementById('btn-show-password-popup').addEventListener('click', showPasswordPopup);
     document.getElementById('btn-show-search').addEventListener('click', () => showSection('search'));
+    document.getElementById('btn-show-notifications').addEventListener('click', showNotifications);
     document.getElementById('btn-add-donor').addEventListener('click', addDonor);
     document.getElementById('btn-search-donor-edit').addEventListener('click', searchDonorToEdit);
     document.getElementById('btn-save-edit').addEventListener('click', saveEdit);
@@ -1543,12 +1625,12 @@
     document.getElementById('btn-cancel-edit').addEventListener('click', cancelEdit);
     document.getElementById('btn-check-password').addEventListener('click', checkPassword);
     document.getElementById('btn-close-password-popup').addEventListener('click', closePasswordPopup);
+    document.getElementById('btn-close-notifications').addEventListener('click', closeNotifications);
     document.getElementById('searchBlood').addEventListener('change', searchDonors);
     document.getElementById('searchQuery').addEventListener('input', searchDonors);
     document.getElementById('btn-save-donation-date').addEventListener('click', saveDonationDate);
     document.getElementById('btn-close-update-date-popup').addEventListener('click', closeUpdateDatePopup);
     document.getElementById('btn-nearby-donors').addEventListener('click', searchNearbyDonors);
-    document.getElementById('btn-get-current-location-popup').addEventListener('click', updateDonorLocation);
     document.getElementById('btn-toggle-map').addEventListener('click', () => {
       const mapDiv = document.getElementById('donorsMap');
       mapDiv.style.display = mapDiv.style.display === 'none' ? 'block' : 'none';
